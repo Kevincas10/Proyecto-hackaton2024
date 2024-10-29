@@ -1,0 +1,102 @@
+/* Estilos básicos */
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background-color: #e0f7fa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+/* Contenedor principal */
+.container {
+    width: 90%;
+    max-width: 600px;
+    padding: 25px;
+    background-color: #ffffff;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    text-align: center;
+}
+
+/* Título */
+h1 {
+    color: #00695c;
+    margin-bottom: 20px;
+    font-size: 2em;
+}
+
+/* Formulario */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Campos de entrada */
+input[type="text"],
+input[type="email"] {
+    padding: 12px;
+    border: 1px solid #b0bec5;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus {
+    border-color: #00796b;
+    outline: none;
+}
+
+/* Botón de agregar */
+button {
+    padding: 12px;
+    background-color: #00796b;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #004d40;
+}
+
+/* Lista de contactos */
+.contacts {
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Tarjeta de contacto */
+.contact-card {
+    padding: 15px;
+    border: 1px solid #cfd8dc;
+    border-radius: 8px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+    text-align: left;
+}
+
+.contact-card:hover {
+    transform: translateY(-5px);
+}
+
+.contact-card h3 {
+    margin: 0 0 5px;
+    color: #00796b;
+    font-size: 1.2em;
+}
+
+.contact-card p {
+    margin: 5px 0;
+    color: #607d8b;
+    font-size: 0.95em;
+}
