@@ -4,7 +4,6 @@ const multer = require('multer');
 const app = express();
 const PORT = 3000;
 
-// Configuración de multer para almacenar fotos
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, 'public/uploads');
@@ -19,7 +18,6 @@ const upload = multer({ storage: storage });
 app.use(express.json());
 app.use(express.static('public'));
 
-// Ruta para guardar un nuevo contacto con foto
 app.post('/guardar-contacto', upload.single('foto'), (req, res) => {
     const { nombre, email, ocupacion } = req.body;
     const foto = req.file ? `/uploads/${req.file.filename}` : '';
@@ -39,7 +37,6 @@ app.post('/guardar-contacto', upload.single('foto'), (req, res) => {
     });
 });
 
-// Ruta para obtener todos los contactos
 app.get('/obtener-contactos', (req, res) => {
     fs.readFile('data.json', (err, data) => {
         if (err) return res.status(500).json([]);
@@ -48,7 +45,6 @@ app.get('/obtener-contactos', (req, res) => {
     });
 });
 
-// Ruta para actualizar un contacto existente
 app.put('/actualizar-contacto/:id', upload.single('foto'), (req, res) => {
     const id = parseInt(req.params.id);
     const { nombre, email, ocupacion } = req.body;
@@ -67,7 +63,6 @@ app.put('/actualizar-contacto/:id', upload.single('foto'), (req, res) => {
     });
 });
 
-// Ruta para eliminar un contacto
 app.delete('/eliminar-contacto/:id', (req, res) => {
     const id = parseInt(req.params.id);
 

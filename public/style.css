@@ -1,4 +1,3 @@
-/* Estilos básicos */
 body {
     font-family: 'Helvetica Neue', Arial, sans-serif;
     background-color: #e0f7fa;
@@ -9,7 +8,6 @@ body {
     margin: 0;
 }
 
-/* Contenedor principal */
 .container {
     width: 90%;
     max-width: 600px;
@@ -20,21 +18,18 @@ body {
     text-align: center;
 }
 
-/* Título */
 h1 {
     color: #00695c;
     margin-bottom: 20px;
     font-size: 2em;
 }
 
-/* Formulario */
 form {
     display: flex;
     flex-direction: column;
     gap: 15px;
 }
 
-/* Campos de entrada */
 input[type="text"],
 input[type="email"] {
     padding: 12px;
@@ -50,7 +45,6 @@ input[type="email"]:focus {
     outline: none;
 }
 
-/* Botón de agregar */
 button {
     padding: 12px;
     background-color: #00796b;
@@ -66,7 +60,6 @@ button:hover {
     background-color: #004d40;
 }
 
-/* Lista de contactos */
 .contacts {
     margin-top: 25px;
     display: flex;
@@ -74,7 +67,6 @@ button:hover {
     gap: 15px;
 }
 
-/* Tarjeta de contacto */
 .contact-card {
     display: flex;
     align-items: center;
