@@ -4,28 +4,27 @@ document.getElementById('contact-form').addEventListener('submit', function(even
     const nombre = document.getElementById('nombre').value;
     const email = document.getElementById('email').value;
     const ocupacion = document.getElementById('ocupacion').value;
+    const foto = document.getElementById('foto').files[0];
 
-    const contacto = { nombre, email, ocupacion };
+    const formData = new FormData();
+    formData.append('nombre', nombre);
+    formData.append('email', email);
+    formData.append('ocupacion', ocupacion);
+    formData.append('foto', foto);
 
-    // Guardar o actualizar contacto
     if (editingContactId !== null) {
-        // Si estamos editando, enviamos la solicitud de actualización
-        actualizarContacto(editingContactId, contacto);
+        actualizarContacto(editingContactId, formData);
     } else {
-        // Si no, guardamos un nuevo contacto
-        agregarContacto(contacto);
+        agregarContacto(formData);
     }
 });
 
-let editingContactId = null; // Guardará el ID del contacto que estamos editando
+let editingContactId = null;
 
-function agregarContacto(contacto) {
+function agregarContacto(formData) {
     fetch('/guardar-contacto', {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(contacto)
+        body: formData
     })
     .then(response => response.json())
     .then(data => {
@@ -47,11 +46,14 @@ function mostrarContactos() {
                 const contactCard = document.createElement('div');
                 contactCard.className = 'contact-card';
                 contactCard.innerHTML = `
-                    <h3>${contacto.nombre}</h3>
-                    <p>Email: ${contacto.email}</p>
-                    <p>Ocupación: ${contacto.ocupacion}</p>
-                    <button onclick="editarContacto(${index})">Editar</button>
-                    <button onclick="eliminarContacto(${index})">Eliminar</button>
+                    <img src="${contacto.foto}" alt="Foto de ${contacto.nombre}">
+                    <div>
+                        <h3>${contacto.nombre}</h3>
+                        <p>Email: ${contacto.email}</p>
+                        <p>Cursos a impartir: ${contacto.ocupacion}</p>
+                        <button onclick="editarContacto(${index})">Editar</button>
+                        <button onclick="eliminarContacto(${index})">Eliminar</button>
+                    </div>
                 `;
                 contactsList.appendChild(contactCard);
             });
@@ -66,19 +68,16 @@ function editarContacto(id) {
             const contacto = contactos[id];
             document.getElementById('nombre').value = contacto.nombre;
             document.getElementById('email').value = contacto.email;
-            document.getElementById('ocupacion').value = contacto.ocupacion;
+            document.getElementById('Cursos').value = contacto.ocupacion;
             editingContactId = id;
         })
         .catch(error => console.error('Error al obtener contacto:', error));
 }
 
-function actualizarContacto(id, contacto) {
+function actualizarContacto(id, formData) {
     fetch(`/actualizar-contacto/${id}`, {
         method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(contacto)
+        body: formData
     })
     .then(response => response.json())
     .then(data => {
@@ -104,5 +103,4 @@ function eliminarContacto(id) {
     .catch(error => console.error('Error al eliminar contacto:', error));
 }
 
-// Llama a mostrarContactos al cargar la página
 mostrarContactos();

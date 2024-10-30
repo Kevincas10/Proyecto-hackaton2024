@@ -9,10 +9,11 @@
 <body>
     <div class="container">
         <h1>Informacion de Turorias.</h1>
-        <form id="contact-form">
+        <form id="contact-form" enctype="multipart/form-data">
             <input type="text" id="nombre" placeholder="Nombre" required>
             <input type="email" id="email" placeholder="Correo Electrónico" required>
             <input type="text" id="ocupacion" placeholder="Curso que puede impartir" required>
+            <input type="file" id="foto" accept="image/*" required>
             <button type="submit">Agregar Contacto</button>
         </form>
         <div class="contacts" id="contacts-list"></div>
